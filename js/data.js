@@ -246,3 +246,11 @@ const products = [
     ]
   }
 ];
+// Kategori
+const categories = [
+  { id: "semua", name: "Semua Produk", icon: "" },
+  { id: "makanan", name: "Makanan & Minuman", icon: "" },
+  { id: "kerajinan", name: "Kerajinan Tangan", icon: "" },
+  { id: "fashion", name: "Fashion & Tekstil", icon: "" },
+  { id: "kecantikan", name: "Kecantikan", icon: "" }
+];

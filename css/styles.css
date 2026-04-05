@@ -838,3 +838,222 @@ input, textarea, select {
   font-size: 0.88rem;
   color: var(--color-text-light);
 }
+
+.product-detail-meta .meta-item i {
+  color: var(--color-primary);
+}
+
+.product-detail-meta .stars {
+  color: var(--color-warning);
+  font-size: 0.85rem;
+}
+
+.detail-price-box {
+  background: var(--color-cream);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.detail-price-box .current-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.detail-price-box .original-price {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  margin-left: var(--space-sm);
+}
+
+.detail-price-box .discount {
+  display: inline-block;
+  background: rgba(184,92,56,0.12);
+  color: var(--color-primary);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-left: var(--space-sm);
+}
+
+.product-description {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  line-height: 1.8;
+  margin-bottom: var(--space-xl);
+}
+
+.detail-actions {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.detail-actions .btn {
+  flex: 1;
+  justify-content: center;
+}
+
+.seller-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.seller-card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.seller-card .seller-info h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.seller-card .seller-info p {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+/* Story Section in Detail */
+.story-section {
+  padding: var(--space-4xl) 0;
+  background: var(--color-white);
+}
+
+.story-card-large {
+  background: var(--gradient-hero);
+  border-radius: var(--radius-xl);
+  padding: var(--space-3xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.story-card-large::before {
+  content: '"';
+  font-family: var(--font-display);
+  font-size: 15rem;
+  color: rgba(212,167,106,0.08);
+  position: absolute;
+  top: -40px;
+  left: 20px;
+  line-height: 1;
+}
+
+.story-card-large h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--color-accent);
+  margin-bottom: var(--space-lg);
+}
+
+.story-card-large p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.9;
+  position: relative;
+  z-index: 1;
+}
+
+.story-card-large .seller-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-xl);
+  color: var(--color-accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.story-card-large .seller-tag img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--color-accent);
+}
+
+/* Reviews Section */
+.reviews-section {
+  padding: var(--space-4xl) 0;
+}
+
+.reviews-list {
+  display: grid;
+  gap: var(--space-lg);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.review-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.review-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--gradient-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.review-author-info h4 {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-dark);
+}
+
+.review-author-info .date {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.review-stars {
+  color: var(--color-warning);
+  font-size: 0.82rem;
+}
+
+.review-card p {
+  font-size: 0.92rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
+}
+
+/* ---- Stories Page ---- */
+.stories-hero {
+  padding: calc(var(--nav-height) + var(--space-4xl)) 0 var(--space-4xl);
+  background: var(--gradient-hero);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}

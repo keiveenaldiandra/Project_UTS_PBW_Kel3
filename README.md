@@ -20,5 +20,10 @@ LokaIN merupakan platform digital yang menghadirkan berbagai produk UMKM lokal I
 - Melakukan pemesanan atau pembelian secara online.
 - Pesanan diproses oleh pelaku UMKM dan dikirim ke pengguna.
 
+**Cara Menjalankan Project**
+1. Download atau clone repository
+2. Buka folder project
+3. Jalankan file index.html di browser
+
 
 

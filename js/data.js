@@ -254,3 +254,92 @@ const categories = [
   { id: "fashion", name: "Fashion & Tekstil", icon: "" },
   { id: "kecantikan", name: "Kecantikan", icon: "" }
 ];
+// Cerita UMKM untuk halaman Stories
+const umkmStories = [
+  {
+    id: 1,
+    title: "Dari Canting Hingga Dunia: Perjalanan Batik Bu Siti",
+    excerpt: "Kisah inspiratif seorang ibu yang mempertahankan warisan batik tulis Cirebon selama 30 tahun.",
+    content: `Bu Siti Rahayu memulai perjalanan batiknya di usia yang sangat muda. Setiap sore setelah pulang sekolah, ia duduk di samping ibunya, memperhatikan dengan seksama bagaimana canting dicelupkan ke dalam malam panas dan digoreskan ke atas kain putih.
+
+"Ibu selalu bilang, membatik itu seperti menulis surat cinta kepada budaya kita," kenang Bu Siti.
+
+Tahun 1995, Bu Siti resmi membuka usaha batik sendiri dengan nama "Batik Mega Siti." Awalnya hanya bermodalkan 5 lembar kain dan satu set canting usang milik ibunya. Pesanan pertamanya datang dari seorang turis Jepang yang terpesona melihat Bu Siti membatik di halaman rumahnya.
+
+Perjalanan tidak selalu mulus. Krisis ekonomi 1998 hampir membuat usahanya gulung tikar. Namun, Bu Siti tetap bertahan. "Saya tidak bisa berhenti membatik. Ini bukan sekadar pekerjaan, ini identitas saya," tegasnya.
+
+Kini, Batik Mega Siti mempekerjakan 15 pembatik muda dari desa sekitar. Bu Siti juga rutin mengajar batik di sekolah-sekolah, memastikan seni warisan UNESCO ini terus hidup di tangan generasi baru.
+
+"Setiap helai batik yang saya buat membawa harapan — harapan bahwa anak cucu kita masih akan mengenal dan mencintai batik."`,
+    image: "https://engrasia.com/cdn/shop/products/5a98a06a-cf05-4f29-a684-7a824bba86b5.jpg?v=1571439195&width=800",
+    author: "Tim LokalN",
+    date: "2025-12-01",
+    category: "Kerajinan",
+    readTime: "5 menit"
+  },
+  {
+    id: 2,
+    title: "Kopi Gayo: Dari Puncak Gunung ke Cangkir Dunia",
+    excerpt: "Bagaimana petani kopi di dataran tinggi Gayo mengubah biji kopi menjadi emas hitam berkelas dunia.",
+    content: `Di ketinggian 1.400 meter di atas permukaan laut, di antara kabut pagi yang dingin dan tanah vulkanik yang subur, tumbuh salah satu kopi terbaik di dunia — Kopi Arabika Gayo.
+
+Pak Ahmad, 55 tahun, adalah petani kopi generasi ketiga di Takengon, Aceh. Setiap pagi sebelum fajar, ia sudah berada di kebun kopinya, memeriksa buah-buah kopi yang perlahan berubah merah.
+
+"Kakek saya menanam pohon kopi pertama di lahan ini tahun 1960-an. Sekarang saya yang merawatnya, dan nanti anak saya yang akan melanjutkan," kata Pak Ahmad.
+
+Proses dari pohon ke cangkir tidaklah sederhana. Buah kopi dipetik satu per satu secara selektif — hanya yang benar-benar merah matang. Kemudian dicuci, difermentasi, dikeringkan di bawah matahari, dan disortir manual.
+
+Tahun 2018, kopi dari koperasi Pak Ahmad meraih skor 87 di penilaian Specialty Coffee Association — sebuah pencapaian yang membuka pintu ekspor ke Eropa dan Jepang.
+
+"Dulu orang bilang jadi petani kopi itu miskin. Sekarang saya buktikan, petani kopi bisa hidup sejahtera dan dihormati," ujar Pak Ahmad dengan bangga.`,
+    image: "https://d8g5mz6srwlcs.cloudfront.net/original/66c837bb96b37850191467.jpg",
+    author: "Tim LokalN",
+    date: "2025-11-15",
+    category: "Makanan & Minuman",
+    readTime: "6 menit"
+  },
+  {
+    id: 3,
+    title: "Anyaman Rotan: Warisan Dayak yang Mendunia",
+    excerpt: "Komunitas pengrajin rotan di Kalimantan yang melestarikan tradisi anyaman suku Dayak.",
+    content: `Di sebuah desa kecil di pedalaman Kalimantan Selatan, suara gesekan rotan terdengar berirama. Ibu Mariani, 48 tahun, duduk di beranda rumahnya, jari-jarinya dengan lincah menganyam helai demi helai rotan menjadi sebuah tas yang indah.
+
+"Saya belajar menganyam dari nenek saya. Dulu, anyaman rotan digunakan untuk keperluan sehari-hari — bakul nasi, tikar, dan tempat penyimpanan. Sekarang, kami mengubahnya menjadi produk fashion," cerita Ibu Mariani.
+
+Perjalanan transformasi ini dimulai tahun 2019, ketika seorang desainer muda dari Jakarta mengunjungi desanya. Ia melihat potensi luar biasa dari kerajinan anyaman Dayak dan mengajak komunitas Ibu Mariani berkolaborasi.
+
+Hasilnya menakjubkan. Tas anyaman rotan mereka kini dijual di butik-butik Jakarta dan bahkan pernah tampil di sebuah fashion show internasional. Harga yang dulunya hanya puluhan ribu, kini bisa mencapai ratusan ribu rupiah.
+
+Komunitas Ibu Mariani kini beranggotakan 30 perempuan Dayak. Mereka tidak hanya menganyam, tapi juga mengajarkan teknik ini kepada gadis-gadis muda di desa.
+
+"Kami ingin dunia tahu bahwa tangan-tangan perempuan Dayak bisa menciptakan keindahan yang tak ternilai."`,
+    image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/114/MTA-183258798/brd-132309_keris-gallery-tas-rotan-anyam-tabung-dengan-tali-kulit-panjang_full01-aa44c42a.webp",
+    author: "Tim LokalN",
+    date: "2025-10-20",
+    category: "Kerajinan",
+    readTime: "5 menit"
+  },
+  {
+    id: 4,
+    title: "Madu Hutan Sumbawa: Manisnya Perjuangan Sang Pemburu",
+    excerpt: "Kisah Pak Hamzah yang memanjat pohon 30 meter demi madu hutan murni terbaik Indonesia.",
+    content: `Pukul 3 dini hari, saat sebagian besar orang masih terlelap, Pak Hamzah sudah bersiap memasuki hutan belantara Sumbawa. Bekal air, tali, dan wadah bambu menggantung di pundaknya. Hari ini, ia akan berburu madu.
+
+Pak Hamzah, 50 tahun, adalah pemburu madu generasi keempat. Keahlian ini diwariskan melalui ritual khusus dari ayah ke anak. "Tidak semua orang bisa menjadi pemburu madu. Ada ilmu dan doa khusus yang harus dikuasai," jelasnya.
+
+Pohon-pohon sialang tempat lebah bersarang bisa mencapai ketinggian 40 meter. Pak Hamzah memanjatnya tanpa pengaman modern — hanya tali rotan dan keberanian. Di puncak, ia menyalakan obor dari sabut kelapa untuk mengusir lebah, lalu dengan hati-hati mengambil sarang madu.
+
+"Kami tidak mengambil semua. Selalu disisakan untuk lebah membangun kembali. Itu aturan hutan," kata Pak Hamzah tentang prinsip sustainability yang telah dipraktikkan leluhurnya jauh sebelum istilah itu populer.
+
+Madu hutan Sumbawa dikenal memiliki kualitas istimewa karena lebah mengambil nektar dari beragam bunga hutan tropis. Rasanya kompleks — manis, sedikit asam, dengan aroma bunga yang khas.
+
+Sekarang, dengan bantuan marketplace online, madu Pak Hamzah bisa menjangkau konsumen di seluruh Indonesia. Penghasilan meningkat, tapi Pak Hamzah tetap setia pada cara tradisional.
+
+"Hutan ini memberi kami madu, kayu, air, dan udara. Sudah sepantasnya kami menjaganya."`,
+    image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//101/MTA-1968094/madu-sumbawa_madu-hitam-asli-sumbawa-100--murni_full02.jpg",
+    author: "Tim LokalN",
+    date: "2025-09-10",
+    category: "Makanan & Minuman",
+    readTime: "7 menit"
+  }
+];

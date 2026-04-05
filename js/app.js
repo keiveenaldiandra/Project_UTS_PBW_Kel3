@@ -383,3 +383,143 @@ function updateWishlistViewUI() {
       : 'Temukan produk unik berkualitas dari pengrajin dan produsen lokal terbaik Indonesia';
   }
 }
+
+// ============================================
+// PRODUCT DETAIL PAGE
+// ============================================
+
+function initDetailPage() {
+  const params = new URLSearchParams(window.location.search);
+  const productId = parseInt(params.get('id'));
+  const product = products.find(p => p.id === productId);
+
+  if (!product) {
+    window.location.href = 'products.html';
+    return;
+  }
+
+  // Update page title
+  document.title = `${product.name} — LokalN`;
+
+  renderProductDetail(product);
+  renderProductStory(product);
+  renderProductReviews(product);
+  renderRelatedProducts(product);
+}
+
+function renderProductDetail(product) {
+  const container = document.getElementById('productDetailGrid');
+  if (!container) return;
+
+  const discount = Math.round((1 - product.price / product.originalPrice) * 100);
+  const inWishlist = isInWishlist(product.id);
+
+  container.innerHTML = `
+    <div class="product-detail-gallery" style="position: relative;">
+      <button onclick="history.back()" style="position: absolute; top: 15px; left: 15px; z-index: 10; background: rgba(255, 255, 255, 0.9); border: none; padding: 8px 16px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 6px; color: var(--color-dark); transition: all 0.3s ease;" onmouseover="this.style.background='white'; this.style.transform='translateX(-3px)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.9)'; this.style.transform='translateX(0)';">
+        <i class="fas fa-arrow-left"></i> Kembali
+      </button>
+      <img src="${product.image}" alt="${product.name}"
+           onerror="this.onerror=null; this.src='${FALLBACK_IMG}'">
+    </div>
+    <div class="product-detail-info">
+      <div class="breadcrumb">
+        <a href="index.html">Beranda</a> <i class="fas fa-chevron-right" style="font-size:0.6rem"></i>
+        <a href="products.html">Produk</a> <i class="fas fa-chevron-right" style="font-size:0.6rem"></i>
+        <span>${product.name}</span>
+      </div>
+      <h1>${product.name}</h1>
+      <div class="product-detail-meta">
+        <div class="meta-item">
+          <div class="stars">${generateStars(product.rating)}</div>
+          <span>${product.rating} (${product.reviewCount} ulasan)</span>
+        </div>
+        <div class="meta-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>${product.location}</span>
+        </div>
+      </div>
+      <div class="detail-price-box">
+        <span class="current-price">${formatRupiah(product.price)}</span>
+        <span class="original-price">${formatRupiah(product.originalPrice)}</span>
+        <span class="discount">-${discount}%</span>
+      </div>
+      <p class="product-description">${product.description}</p>
+      <div class="detail-actions">
+        <button class="btn btn-primary" onclick="openCheckoutModal(${product.id})">
+          <i class="fas fa-shopping-cart"></i> Beli Sekarang
+        </button>
+        <button class="btn ${inWishlist ? 'btn-primary' : 'btn-outline'}" 
+                style="${inWishlist ? '' : 'border-color: var(--color-primary); color: var(--color-primary);'}"
+                data-wishlist-id="${product.id}"
+                onclick="toggleWishlist(${product.id}, event); initDetailPage();">
+          <i class="${inWishlist ? 'fas' : 'far'} fa-heart"></i> 
+          ${inWishlist ? 'Dalam Wishlist' : 'Tambah Wishlist'}
+        </button>
+      </div>
+      <div class="seller-card">
+        <img src="${product.sellerImage}" alt="${product.seller}"
+             onerror="this.onerror=null; this.src='${FALLBACK_SELLER_IMG}'">
+        <div class="seller-info">
+          <h4>${product.seller}</h4>
+          <p><i class="fas fa-map-marker-alt"></i> ${product.location}</p>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderProductStory(product) {
+  const container = document.getElementById('productStory');
+  if (!container) return;
+
+  container.innerHTML = `
+    <div class="story-card-large">
+      <h3>"${product.name}" — Cerita dari ${product.seller}</h3>
+      <p>${product.story}</p>
+      <div class="seller-tag">
+        <img src="${product.sellerImage}" alt="${product.seller}"
+             onerror="this.onerror=null; this.src='${FALLBACK_SELLER_IMG}'">
+        <span>${product.seller} — ${product.location}</span>
+      </div>
+    </div>
+  `;
+}
+
+function renderProductReviews(product) {
+  const container = document.getElementById('reviewsList');
+  if (!container) return;
+
+  container.innerHTML = product.reviews.map(review => `
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-author">
+          <div class="review-avatar">${review.name.charAt(0)}</div>
+          <div class="review-author-info">
+            <h4>${review.name}</h4>
+            <span class="date">${timeAgo(review.date)}</span>
+          </div>
+        </div>
+        <div class="review-stars">${generateStars(review.rating)}</div>
+      </div>
+      <p>${review.comment}</p>
+    </div>
+  `).join('');
+}
+
+function renderRelatedProducts(product) {
+  const container = document.getElementById('relatedProducts');
+  if (!container) return;
+
+  const related = products
+    .filter(p => p.id !== product.id && p.category === product.category)
+    .slice(0, 4);
+
+  if (related.length === 0) {
+    document.getElementById('relatedSection').style.display = 'none';
+    return;
+  }
+
+  container.innerHTML = related.map(createProductCard).join('');
+  setTimeout(() => initScrollAnimations(), 50);
+}

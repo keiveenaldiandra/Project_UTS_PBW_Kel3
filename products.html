@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Detail produk UMKM — LokalN">
-  <title>Detail Produk — LokalN</title>
+  <meta name="description" content="Jelajahi semua produk UMKM lokal Indonesia — makanan, kerajinan, fashion, dan kecantikan dari pengrajin terbaik Nusantara.">
+  <title>Produk UMKM — LokalN</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
   <div class="page-loader" id="pageLoader"><div class="loader-spinner"></div></div>
 
+  <!-- Navigation -->
   <nav class="navbar scrolled" id="navbar">
     <div class="container">
       <a href="index.html" class="nav-logo">
@@ -24,11 +25,11 @@
         <a href="history.html">Riwayat</a>
       </div>
       <div class="nav-actions">
-        <button class="nav-wishlist-btn" id="navWishlistBtn" onclick="window.location.href='products.html?wishlist=true'" title="Wishlist">
+        <button class="nav-wishlist-btn" id="navWishlistBtn" onclick="toggleWishlistView()" title="Wishlist">
           <i class="fas fa-heart"></i>
           <span class="wishlist-count" id="wishlistCount">0</span>
         </button>
-        <div class="nav-hamburger" onclick="toggleMobileMenu()">
+        <div class="nav-hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()">
           <span></span><span></span><span></span>
         </div>
       </div>
@@ -44,54 +45,50 @@
     <a href="history.html">Riwayat</a>
   </div>
 
-  <!-- Product Detail -->
-  <section class="product-detail-section">
-    <div class="container">
-      <div class="product-detail-grid" id="productDetailGrid">
-        <!-- Rendered by JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Product Story -->
-  <section class="story-section" id="productStorySection">
+  <!-- Products Page Content -->
+  <section class="products-section" style="padding-top: calc(var(--nav-height) + var(--space-2xl));">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="label">Cerita Produk</span>
-        <h2>Kisah di Balik Produk Ini</h2>
+        <span class="label">Katalog</span>
+        <h2 id="productsTitle">Semua Produk UMKM</h2>
+        <p id="productsSubtitle">Temukan produk unik berkualitas dari pengrajin dan produsen lokal terbaik Indonesia</p>
       </div>
-      <div id="productStory" class="fade-in">
+
+      <!-- Search & Filter -->
+      <div class="search-filter-bar fade-in">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Cari produk, pengrajin, atau daerah..." oninput="handleSearch()">
+        </div>
+      </div>
+
+      <div class="category-filters fade-in" id="categoryFilters">
         <!-- Rendered by JS -->
+      </div>
+
+      <!-- Product Grid -->
+      <div class="product-grid" id="productGrid">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- No Results -->
+      <div class="no-results" id="noResults" style="display: none;">
+        <div class="icon"></div>
+        <h3>Produk tidak ditemukan</h3>
+        <p>Coba ubah kata kunci pencarian atau filter kategori Anda</p>
+      </div>
+
+      <!-- Wishlist Empty -->
+      <div class="wishlist-empty" id="wishlistEmpty" style="display: none;">
+        <div class="icon"></div>
+        <h3>Wishlist Anda Kosong</h3>
+        <p>Tambahkan produk favorit Anda dengan menekan tombol wishlist pada produk</p>
+        <button class="btn btn-primary" onclick="toggleWishlistView()">Lihat Semua Produk</button>
       </div>
     </div>
   </section>
 
-  <!-- Reviews -->
-  <section class="reviews-section" id="reviewsSection">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="label">Ulasan</span>
-        <h2>Apa Kata Pembeli</h2>
-      </div>
-      <div class="reviews-list fade-in" id="reviewsList">
-        <!-- Rendered by JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Related Products -->
-  <section class="products-section" id="relatedSection">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="label">Rekomendasi</span>
-        <h2>Produk Serupa</h2>
-      </div>
-      <div class="product-grid fade-in" id="relatedProducts">
-        <!-- Rendered by JS -->
-      </div>
-    </div>
-  </section>
-
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -100,6 +97,11 @@
             <span class="logo-text">Lokal<span>N</span></span>
           </div>
           <p>Platform marketplace untuk mendukung produk UMKM lokal Indonesia.</p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
         </div>
         <div class="footer-links">
           <h4>Navigasi</h4>
@@ -113,9 +115,11 @@
           <a href="products.html?cat=makanan">Makanan & Minuman</a>
           <a href="products.html?cat=kerajinan">Kerajinan Tangan</a>
           <a href="products.html?cat=fashion">Fashion & Tekstil</a>
+          <a href="products.html?cat=kecantikan">Kecantikan</a>
         </div>
         <div class="footer-links">
           <h4>Informasi</h4>
+          <a href="#">Cara Belanja</a>
           <a href="#">FAQ</a>
           <a href="#">Hubungi Kami</a>
         </div>
@@ -126,139 +130,8 @@
     </div>
   </footer>
 
-  <!-- Checkout Modal -->
-  <div class="modal-overlay" id="checkoutModal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeCheckoutModal()"><i class="fas fa-times"></i></button>
-      
-      <!-- Step 1: Form Data, Pengiriman, Pembayaran -->
-      <div id="checkoutStep1">
-        <h2>Detail Pesanan</h2>
-        <div class="checkout-product-info">
-          <img id="checkoutProductImage" src="" alt="Product">
-          <div style="flex: 1;">
-            <h4 id="checkoutProductName">Nama Produk</h4>
-            <span class="price" id="checkoutProductPrice">Rp 0</span>
-          </div>
-          <div class="quantity-control">
-            <button type="button" onclick="updateCheckoutQty(-1)">-</button>
-            <input type="number" id="checkoutQty" value="1" min="1" max="99" onchange="calculateCheckoutTotal()">
-            <button type="button" onclick="updateCheckoutQty(1)">+</button>
-          </div>
-        </div>
-        
-        <form id="checkoutForm" onsubmit="processToPayment(event)">
-          <div class="form-group">
-            <label>Nama Lengkap</label>
-            <input type="text" id="buyerName" required placeholder="Masukkan nama Anda">
-          </div>
-          <div class="form-group">
-            <label>Nomor WhatsApp</label>
-            <input type="tel" id="buyerPhone" required placeholder="08xx-xxxx-xxxx">
-          </div>
-          <div class="form-group">
-            <label>Alamat Lengkap (Jika Diantar)</label>
-            <textarea id="buyerAddress" rows="2" placeholder="Masukkan alamat pengiriman..."></textarea>
-          </div>
-          
-          <div class="form-group">
-            <label>Metode Pengiriman</label>
-            <div class="method-options">
-              <label class="radio-card">
-                <input type="radio" name="shippingMethod" value="diantar" checked onchange="calculateCheckoutTotal()">
-                <div class="card-content">
-                  <i class="fas fa-truck"></i>
-                  <span>Diantar</span>
-                </div>
-              </label>
-              <label class="radio-card">
-                <input type="radio" name="shippingMethod" value="ambil" onchange="calculateCheckoutTotal()">
-                <div class="card-content">
-                  <i class="fas fa-store"></i>
-                  <span>Ambil di Tempat</span>
-                </div>
-              </label>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label>Metode Pembayaran</label>
-            <div class="method-options single">
-              <label class="radio-card active-card">
-                <input type="radio" name="paymentMethod" value="qris" checked>
-                <div class="card-content">
-                  <i class="fas fa-qrcode"></i>
-                  <span>QRIS</span>
-                </div>
-              </label>
-            </div>
-          </div>
-          
-          <div class="checkout-summary-details">
-            <div class="summary-row">
-              <span>Subtotal Produk:</span>
-              <span id="checkoutSubtotal">Rp 0</span>
-            </div>
-            <div class="summary-row" id="shippingFeeRow">
-              <span>Biaya Pengantaran (10%):</span>
-              <span id="checkoutShippingFee">Rp 0</span>
-            </div>
-          </div>
-          
-          <div class="checkout-total">
-            <span>Total Pembayaran:</span>
-            <strong id="checkoutTotalPrice">Rp 0</strong>
-          </div>
-          
-          <button type="submit" class="btn btn-primary btn-block">
-            Checkout <i class="fas fa-arrow-right"></i>
-          </button>
-        </form>
-      </div>
-
-      <!-- Step 2: QRIS Payment -->
-      <div id="checkoutStep2" style="display: none; text-align: center;">
-        <h2>Pembayaran QRIS</h2>
-        <p>Silakan scan QR Code di bawah untuk melunasi pembayaran</p>
-        <div class="qris-container">
-          <!-- Placeholder QRIS -->
-          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="QRIS" class="qris-image">
-        </div>
-        <div class="checkout-total">
-          <span>Total:</span>
-          <strong id="qrisTotalPrice">Rp 0</strong>
-        </div>
-        <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">Berlaku untuk semua e-wallet & mobile banking</p>
-        <button class="btn btn-primary btn-block" onclick="processPayment()">
-          <i class="fas fa-check-circle"></i> Saya Sudah Bayar
-        </button>
-      </div>
-
-      <!-- Step 3: Success -->
-      <div id="checkoutStep3" style="display: none; text-align: center;">
-        <div class="success-icon">
-          <i class="fas fa-check-circle"></i>
-        </div>
-        <h2>Pembayaran Berhasil!</h2>
-        <p>Terima kasih <strong><span id="successBuyerName"></span></strong>, pesanan Anda telah kami terima.</p>
-        
-        <div class="order-summary">
-          <p>ID Pesanan LokalN:</p>
-          <h3 class="order-id">LKN-2604-00125</h3>
-        </div>
-        
-        <p style="font-size: 0.9rem; color: #666; margin: 20px 0;">Konfirmasi dan update status pesanan akan dikirimkan melalui WhatsApp.</p>
-        
-        <div class="checkout-actions" style="margin-top: 25px; display: flex; gap: 12px; flex-direction: column;">
-          <a href="history.html" class="btn btn-primary btn-block">Lihat Riwayat Pesanan</a>
-          <a href="index.html" class="btn btn-outline btn-block">Kembali ke Beranda</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
   <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMessage"></span></div>
+
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
 </body>

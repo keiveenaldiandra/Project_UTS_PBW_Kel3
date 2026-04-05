@@ -343,3 +343,24 @@ Sekarang, dengan bantuan marketplace online, madu Pak Hamzah bisa menjangkau kon
     readTime: "7 menit"
   }
 ];
+// Helper: format currency
+function formatRupiah(number) {
+  return new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  }).format(number);
+}
+
+// Helper: generate star rating HTML
+function generateStars(rating) {
+  let stars = '';
+  const fullStars = Math.floor(rating);
+  const hasHalf = rating % 1 >= 0.5;
+  for (let i = 0; i < fullStars; i++) stars += '<i class="fas fa-star"></i>';
+  if (hasHalf) stars += '<i class="fas fa-star-half-alt"></i>';
+  const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
+  for (let i = 0; i < emptyStars; i++) stars += '<i class="far fa-star"></i>';
+  return stars;
+}

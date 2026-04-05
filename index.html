@@ -1,1 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="LokalN - Marketplace produk UMKM lokal Indonesia. Temukan kerajinan tangan, kuliner, dan fashion asli Indonesia dengan cerita di balik setiap produk.">
+  <title>LokalN — Marketplace UMKM Lokal Indonesia</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+  <!-- Page Loader -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-text">Lokal<span>N</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Beranda</a>
+        <a href="products.html">Produk</a>
+        <a href="stories.html">Cerita UMKM</a>
+        <a href="about.html">Tentang</a>
+      </div>
+      <div class="nav-actions">
+        <button class="nav-wishlist-btn" id="navWishlistBtn"
+          onclick="window.location.href='products.html?wishlist=true'" title="Wishlist">
+          <i class="fas fa-heart"></i>
+          <span class="wishlist-count" id="wishlistCount">0</span>
+        </button>
+        <div class="nav-hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu-overlay" id="mobileMenu">
+    <button class="mobile-close-btn" onclick="toggleMobileMenu()">
+      <i class="fas fa-times"></i>
+    </button>
+    <a href="index.html" class="active">Beranda</a>
+    <a href="products.html">Produk</a>
+    <a href="stories.html">Cerita UMKM</a>
+    <a href="about.html">Tentang</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span>🌿</span>
+          <span>Dukung UMKM Lokal Indonesia</span>
+        </div>
+        <h1>Temukan <span>Keunikan</span> Produk Nusantara</h1>
+        <p>Setiap produk punya cerita. Dari tangan-tangan terampil pengrajin lokal di seluruh Indonesia, kami hadirkan
+          produk UMKM terbaik dengan cerita autentik di baliknya.</p>
+        <div class="hero-buttons">
+          <a href="products.html" class="btn btn-primary">
+            <i class="fas fa-compass"></i> Jelajahi Produk
+          </a>
+          <a href="stories.html" class="btn btn-outline">
+            <i class="fas fa-book-open"></i> Baca Cerita UMKM
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <h3>500+</h3>
+            <p>Produk UMKM</p>
+          </div>
+          <div class="hero-stat">
+            <h3>150+</h3>
+            <p>Pengrajin Lokal</p>
+          </div>
+          <div class="hero-stat">
+            <h3>38</h3>
+            <p>Provinsi</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Floating Cards -->
+    <div class="hero-float">
+      <div class="float-card">
+        <img class="float-card-img"
+          src="https://images.unsplash.com/photo-1584184924103-e310d9dc82fc?w=300&h=180&fit=crop" alt="Batik"
+          loading="lazy">
+        <h4>Batik Tulis Premium</h4>
+        <p>Mulai Rp350.000</p>
+      </div>
+      <div class="float-card">
+        <img class="float-card-img" src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=300&h=180&fit=crop"
+          alt="Kopi" loading="lazy">
+        <h4>Kopi Gayo Specialty</h4>
+        <p>Mulai Rp85.000</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="products-section" id="featuredProducts">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="label">Pilihan Terbaik</span>
+        <h2>Produk Unggulan UMKM</h2>
+        <p>Produk-produk terpopuler yang dipilih langsung dari pengrajin dan produsen lokal terbaik Indonesia</p>
+      </div>
+
+      <!-- Category Filters -->
+      <div class="category-filters fade-in" id="homeCategories">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Product Grid -->
+      <div class="product-grid" id="homeProductGrid">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div style="text-align: center; margin-top: var(--space-2xl);" class="fade-in">
+        <a href="products.html" class="btn btn-primary">
+          Lihat Semua Produk <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Stories -->
+  <section class="featured-stories" id="featuredStories">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="label">Inspirasi</span>
+        <h2>Cerita di Balik Produk</h2>
+        <p>Kenali kisah inspiratif para pelaku UMKM yang ada di balik setiap produk</p>
+      </div>
+      <div class="stories-preview-grid fade-in" id="storiesPreview">
+        <!-- Rendered by JS -->
+      </div>
+      <div style="text-align: center; margin-top: var(--space-2xl);" class="fade-in">
+        <a href="stories.html" class="btn btn-secondary">
+          <i class="fas fa-book-open"></i> Baca Semua Cerita
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box fade-in">
+        <h2>Dukung Produk Lokal 🇮🇩</h2>
+        <p>Setiap pembelian Anda membantu ribuan pengrajin dan produsen lokal di seluruh Indonesia untuk terus berkarya.
+        </p>
+        <a href="products.html" class="btn btn-primary">
+          <i class="fas fa-shopping-bag"></i> Mulai Belanja
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-text">Nusantara<span>Market</span></span>
+          </div>
+          <p>Platform marketplace untuk mendukung produk UMKM lokal Indonesia. Menghubungkan pengrajin lokal dengan
+            pembeli yang menghargai kualitas dan cerita.</p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Navigasi</h4>
+          <a href="index.html">Beranda</a>
+          <a href="products.html">Semua Produk</a>
+          <a href="stories.html">Cerita UMKM</a>
+          <a href="about.html">Tentang Kami</a>
+        </div>
+        <div class="footer-links">
+          <h4>Kategori</h4>
+          <a href="products.html?cat=makanan">Makanan & Minuman</a>
+          <a href="products.html?cat=kerajinan">Kerajinan Tangan</a>
+          <a href="products.html?cat=fashion">Fashion & Tekstil</a>
+          <a href="products.html?cat=kecantikan">Kecantikan</a>
+        </div>
+        <div class="footer-links">
+          <h4>Informasi</h4>
+          <a href="#">Cara Belanja</a>
+          <a href="#">FAQ</a>
+          <a href="#">Kebijakan Privasi</a>
+          <a href="#">Hubungi Kami</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Nusantara Market. Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMessage"></span>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

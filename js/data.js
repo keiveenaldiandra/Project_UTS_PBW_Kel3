@@ -45,3 +45,43 @@ const products = [
       { name: "Erik Wijaya", rating: 5, comment: "Packaging rapi, kopi fresh. Recommended!", date: "2025-11-15" }
     ]
   },
+    {
+    id: 3,
+    name: "Tas Anyaman Rotan",
+    price: 699999,
+    originalPrice: 850000,
+    category: "kerajinan",
+    rating: 4.7,
+    reviewCount: 18,
+    image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/114/MTA-183258798/brd-132309_keris-gallery-tas-rotan-anyam-tabung-dengan-tali-kulit-panjang_full01-aa44c42a.webp",
+    badge: "Handmade",
+    location: "Kalimantan Selatan",
+    seller: "Dayak Craft",
+    sellerImage: "https://i.pravatar.cc/100?img=5",
+    description: "Tas anyaman rotan asli Kalimantan, dibuat dengan teknik anyaman tradisional suku Dayak. Rotan pilihan berkualitas tinggi, dianyam rapi dengan detail ornamen etnik. Cocok untuk fashion statement sehari-hari.",
+    story: "Komunitas pengrajin rotan di Kalimantan Selatan ini dipimpin oleh Ibu Mariani. Mereka melestarikan teknik anyaman tradisional suku Dayak yang hampir punah. Setiap tas membutuhkan waktu 3-5 hari untuk diselesaikan. 'Kami ingin dunia tahu bahwa kerajinan Dayak itu indah dan bernilai tinggi,' ujar Ibu Mariani.",
+    reviews: [
+      { name: "Fiona Lee", rating: 5, comment: "Anyamannya rapi dan kuat. Sudah pakai 6 bulan masih bagus!", date: "2025-11-28" },
+      { name: "Galih Permana", rating: 4, comment: "Unik banget, banyak yang bertanya di mana belinya.", date: "2025-10-15" }
+    ]
+  },
+  {
+    id: 4,
+    name: "Sambal Roa Manado",
+    price: 45000,
+    originalPrice: 50000,
+    category: "makanan",
+    rating: 4.6,
+    reviewCount: 42,
+    image: "https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480/img/recipe/ras/Assets/5e2fe612ba085b2c13ed00d6ddc30c97/Derivates/aabf6e8b03890f4f247868626fdf04868bfeb4f4.jpg",
+    badge: "Pedas Nampol",
+    location: "Manado, Sulawesi Utara",
+    seller: "Mama Linda",
+    sellerImage: "https://i.pravatar.cc/100?img=9",
+    description: "Sambal roa khas Manado dengan ikan roa asli yang diasap tradisional. Pedasnya pas, gurihnya mantap! Cocok untuk pendamping nasi, mie, atau camilan. Tanpa pengawet, tahan 3 bulan dalam kulkas.",
+    story: "Mama Linda sudah membuat sambal roa sejak 25 tahun lalu, resep warisan dari neneknya. Awalnya hanya untuk konsumsi keluarga, tapi karena banyak tetangga yang memesan, akhirnya dijual secara luas. 'Rahasia sambal saya ada di ikan roa yang diasap sendiri dengan kayu kelapa,' ungkap Mama Linda sambil tersenyum.",
+    reviews: [
+      { name: "Hendra Kusuma", rating: 5, comment: "Pedasnya nendang! Nasi sepiring habis dalam hitungan menit.", date: "2025-12-10" },
+      { name: "Indah Lestari", rating: 4, comment: "Enak banget, ikan roa-nya berasa. Bakal repeat order!", date: "2025-11-05" }
+    ]
+  },

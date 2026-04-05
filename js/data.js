@@ -145,3 +145,83 @@ const products = [
       { name: "Oscar Putra", rating: 4, comment: "Kualitas premium, motifnya sangat bermakna.", date: "2025-11-18" }
     ]
   },
+  {
+    id: 8,
+    name: "Keripik Tempe Malang",
+    price: 35000,
+    originalPrice: 40000,
+    category: "makanan",
+    rating: 4.5,
+    reviewCount: 67,
+    image: "https://www.finnafood.com/blog/wp-content/uploads/2024/08/keripik-tempe-malang.jpg",
+    badge: "Favorit",
+    location: "Malang, Jawa Timur",
+    seller: "Mbak Rina Sari",
+    sellerImage: "https://i.pravatar.cc/100?img=20",
+    description: "Keripik tempe renyah khas Malang dengan bumbu rempah pilihan. Tersedia varian original, balado, dan keju. Tanpa MSG, menggunakan tempe segar pilihan. Kemasan ziplock 200gr.",
+    story: "Mbak Rina memulai bisnis keripik tempe dari dapur rumahnya 5 tahun lalu setelah ter-PHK. Dengan modal Rp500 ribu, ia mulai memasak dan menitipkan ke warung-warung. Kini produknya sudah merambah marketplace nasional dan mempekerjakan 20 ibu rumah tangga di kampungnya. 'Tempe itu protein rakyat, saya ingin mengangkat nilainya,' kata Mbak Rina.",
+    reviews: [
+      { name: "Putri Ayu", rating: 5, comment: "Renyah banget, bumbu meresap sempurna!", date: "2025-12-12" },
+      { name: "Qori Mahendra", rating: 4, comment: "Enak, cocok buat camilan. Varian balado favorit saya.", date: "2025-11-25" }
+    ]
+  },
+  {
+    id: 9,
+    name: "Sabun Natural Bali",
+    price: 65000,
+    originalPrice: 80000,
+    category: "kecantikan",
+    rating: 4.6,
+    reviewCount: 38,
+    image: "https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?w=600&h=400&fit=crop",
+    badge: "Natural",
+    location: "Ubud, Bali",
+    seller: "Made Ayu Naturals",
+    sellerImage: "https://i.pravatar.cc/100?img=25",
+    description: "Set sabun natural handmade dari Bali. Terbuat dari bahan-bahan organik: minyak kelapa virgin, essential oil, dan bunga-bunga tropis Bali. Tanpa SLS, paraben, dan bahan kimia keras. Isi 3 pcs.",
+    story: "Made Ayu terinspirasi dari tradisi kecantikan Bali kuno yang menggunakan bahan-bahan alami. Setelah belajar saponification di workshop internasional, ia menciptakan lini sabun natural yang menggabungkan wisdom Bali dengan teknik modern. 'Kulit kita layak mendapat yang terbaik dari alam,' filosofi Made Ayu.",
+    reviews: [
+      { name: "Ratna Sari", rating: 5, comment: "Wanginya natural dan tahan lama. Kulit jadi halus!", date: "2025-12-14" },
+      { name: "Sarah Chen", rating: 4, comment: "Love the packaging and the quality. Very gentle.", date: "2025-11-30" }
+    ]
+  },
+  {
+    id: 10,
+    name: "Gula Aren Organik",
+    price: 55000,
+    originalPrice: 70000,
+    category: "makanan",
+    rating: 4.7,
+    reviewCount: 29,
+    image: "https://img.lazcdn.com/g/ff/kf/S4c59384345844194bb12ee38fffc863a5.jpg_720x720q80.jpg",
+    badge: "Organik",
+    location: "Pangandaran, Jawa Barat",
+    seller: "Pak Dede Aren",
+    sellerImage: "https://i.pravatar.cc/100?img=30",
+    description: "Gula aren murni dari nira pohon aren Pangandaran. Diolah secara tradisional tanpa bahan kimia. Rendah indeks glikemik, cocok sebagai pengganti gula pasir. Kemasan 500gr.",
+    story: "Pak Dede setiap pagi pukul 4 subuh memanjat pohon aren untuk mengambil nira segar. Proses memasak nira menjadi gula aren memakan waktu 6-8 jam dengan api kayu bakar. 'Gula aren itu seperti emas coklat. Prosesnya panjang tapi hasilnya manis untuk semua,' kata Pak Dede yang telah 20 tahun menjadi penderes aren.",
+    reviews: [
+      { name: "Tania Putri", rating: 5, comment: "Gula aren terbaik! Wanginya harum, manisnya pas.", date: "2025-12-16" },
+      { name: "Umar Bakri", rating: 4, comment: "Sudah switch dari gula pasir ke gula aren ini. Lebih sehat!", date: "2025-11-08" }
+    ]
+  },
+  {
+    id: 11,
+    name: "Wayang Kulit Mini",
+    price: 180000,
+    originalPrice: 250000,
+    category: "kerajinan",
+    rating: 4.9,
+    reviewCount: 9,
+    image: "https://cf.shopee.co.id/file/id-11134207-7rbk3-m6zhpde0b8to68",
+    badge: "Limited",
+    location: "Solo, Jawa Tengah",
+    seller: "Ki Dalang Suroto",
+    sellerImage: "https://i.pravatar.cc/100?img=33",
+    description: "Wayang kulit mini dekoratif, dibuat dari kulit kerbau asli dengan pewarnaan tradisional. Tinggi 30cm, lengkap dengan gapit bambu. Tokoh: Arjuna. Cocok untuk koleksi atau hiasan.",
+    story: "Ki Dalang Suroto bukan hanya dalang wayang kulit, tapi juga pengrajin wayang terbaik di Solo. Beliau membuat versi mini agar generasi muda bisa mengenal wayang tanpa harus ke pertunjukan. 'Wayang itu ensiklopedia kehidupan Jawa. Saya ingin anak muda setidaknya punya satu di kamarnya,' harap Ki Dalang.",
+    reviews: [
+      { name: "Vina Kusuma", rating: 5, comment: "Detail ukirannya luar biasa halus. Karya seni!", date: "2025-12-02" },
+      { name: "Wawan Setiawan", rating: 5, comment: "Beli untuk oleh-oleh, penerimanya sangat senang.", date: "2025-11-12" }
+    ]
+  },

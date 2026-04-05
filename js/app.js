@@ -253,3 +253,133 @@ function renderStoriesPreview() {
     </a>
   `).join('');
 }
+
+// ============================================
+// PRODUCTS PAGE
+// ============================================
+
+function initProductsPage() {
+  // Check URL params
+  const params = new URLSearchParams(window.location.search);
+  const catParam = params.get('cat');
+  const wishlistParam = params.get('wishlist');
+
+  if (catParam) {
+    currentCategory = catParam;
+  }
+
+  if (wishlistParam === 'true') {
+    isWishlistView = true;
+    updateWishlistViewUI();
+  }
+
+  renderCategoryFilters();
+  renderProducts(getFilteredProducts());
+}
+
+function renderCategoryFilters() {
+  const container = document.getElementById('categoryFilters');
+  if (!container) return;
+
+  const wishlistBtn = `
+    <button class="category-btn ${isWishlistView ? 'active' : ''}" onclick="toggleWishlistView()">
+      <span class="cat-icon"></span> Wishlist (${wishlist.length})
+    </button>
+  `;
+
+  const categoryBtns = categories.map(cat => `
+    <button class="category-btn ${!isWishlistView && cat.id === currentCategory ? 'active' : ''}" 
+            onclick="filterProducts('${cat.id}')">
+      <span class="cat-icon">${cat.icon}</span> ${cat.name}
+    </button>
+  `).join('');
+
+  container.innerHTML = categoryBtns + wishlistBtn;
+}
+
+function getFilteredProducts() {
+  let filtered = products;
+
+  if (isWishlistView) {
+    filtered = products.filter(p => wishlist.includes(p.id));
+  } else if (currentCategory !== 'semua') {
+    filtered = filtered.filter(p => p.category === currentCategory);
+  }
+
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    filtered = filtered.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      p.location.toLowerCase().includes(q) ||
+      p.seller.toLowerCase().includes(q) ||
+      p.description.toLowerCase().includes(q) ||
+      p.category.toLowerCase().includes(q)
+    );
+  }
+
+  return filtered;
+}
+
+function renderProducts(productsToRender) {
+  const grid = document.getElementById('productGrid');
+  const noResults = document.getElementById('noResults');
+  const wishlistEmpty = document.getElementById('wishlistEmpty');
+
+  if (!grid) return;
+
+  if (productsToRender.length === 0) {
+    grid.style.display = 'none';
+    if (isWishlistView && wishlist.length === 0) {
+      if (noResults) noResults.style.display = 'none';
+      if (wishlistEmpty) wishlistEmpty.style.display = 'block';
+    } else {
+      if (noResults) noResults.style.display = 'block';
+      if (wishlistEmpty) wishlistEmpty.style.display = 'none';
+    }
+    return;
+  }
+
+  grid.style.display = 'grid';
+  if (noResults) noResults.style.display = 'none';
+  if (wishlistEmpty) wishlistEmpty.style.display = 'none';
+
+  grid.innerHTML = productsToRender.map(createProductCard).join('');
+  setTimeout(() => initScrollAnimations(), 50);
+}
+
+function filterProducts(category) {
+  isWishlistView = false;
+  currentCategory = category;
+  updateWishlistViewUI();
+  renderCategoryFilters();
+  renderProducts(getFilteredProducts());
+}
+
+function handleSearch() {
+  const input = document.getElementById('searchInput');
+  searchQuery = input ? input.value : '';
+  renderProducts(getFilteredProducts());
+}
+
+function toggleWishlistView() {
+  isWishlistView = !isWishlistView;
+  if (isWishlistView) {
+    currentCategory = 'semua';
+  }
+  updateWishlistViewUI();
+  renderCategoryFilters();
+  renderProducts(getFilteredProducts());
+}
+
+function updateWishlistViewUI() {
+  const title = document.getElementById('productsTitle');
+  const subtitle = document.getElementById('productsSubtitle');
+  if (title) {
+    title.textContent = isWishlistView ? 'Wishlist Anda' : 'Semua Produk UMKM';
+  }
+  if (subtitle) {
+    subtitle.textContent = isWishlistView
+      ? `Anda memiliki ${wishlist.length} produk favorit`
+      : 'Temukan produk unik berkualitas dari pengrajin dan produsen lokal terbaik Indonesia';
+  }
+}

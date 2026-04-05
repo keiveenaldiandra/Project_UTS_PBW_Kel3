@@ -85,3 +85,63 @@ const products = [
       { name: "Indah Lestari", rating: 4, comment: "Enak banget, ikan roa-nya berasa. Bakal repeat order!", date: "2025-11-05" }
     ]
   },
+  {
+    id: 5,
+    name: "Madu Hutan Sumbawa",
+    price: 150000,
+    originalPrice: 185000,
+    category: "makanan",
+    rating: 4.9,
+    reviewCount: 31,
+    image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//101/MTA-1968094/madu-sumbawa_madu-hitam-asli-sumbawa-100--murni_full02.jpg",
+    badge: "Organik",
+    location: "Sumbawa, NTB",
+    seller: "Pak Hamzah",
+    sellerImage: "https://i.pravatar.cc/100?img=11",
+    description: "Madu hutan murni dari lebah liar hutan Sumbawa. Dikumpulkan secara tradisional oleh pemburu madu lokal. 100% alami tanpa campuran gula atau bahan lainnya. Kaya antioksidan dan enzim alami.",
+    story: "Pak Hamzah adalah pemburu madu generasi keempat di hutan Sumbawa. Setiap musim, beliau memanjat pohon setinggi 30 meter untuk mengambil madu dari sarang lebah liar. 'Ini bukan pekerjaan biasa, ini warisan leluhur,' katanya. Pak Hamzah juga aktif menjaga kelestarian hutan agar lebah tetap memiliki habitat alami.",
+    reviews: [
+      { name: "Pak Joko", rating: 5, comment: "Madu asli, kental dan rasanya beda dari madu biasa.", date: "2025-12-18" },
+      { name: "Kartika Sari", rating: 5, comment: "Untuk kesehatan keluarga, saya selalu pakai madu ini.", date: "2025-11-22" }
+    ]
+  },
+  {
+    id: 6,
+    name: "Ukiran Kayu Jepara",
+    price: 1200000,
+    originalPrice: 1500000,
+    category: "kerajinan",
+    rating: 4.8,
+    reviewCount: 12,
+    image: "https://tempatwisatajeparablog.wordpress.com/wp-content/uploads/2017/01/kaligrafi1.jpg",
+    badge: "Premium",
+    location: "Jepara, Jawa Tengah",
+    seller: "Mas Joko Ukir",
+    sellerImage: "https://i.pravatar.cc/100?img=12",
+    description: "Hiasan dinding ukiran kayu jati asli Jepara dengan motif flora Nusantara. Diukir tangan oleh maestro ukir berpengalaman. Finishing natural yang menonjolkan keindahan serat kayu jati. Dimensi 60x40 cm.",
+    story: "Mas Joko belajar mengukir sejak usia 12 tahun di bengkel ukir keluarganya. Kini di usia 40 tahun, ia dikenal sebagai salah satu maestro ukir terbaik di Jepara. 'Setiap ukiran punya jiwa. Saya tidak sekadar memahat kayu, tapi menghidupkan cerita di dalamnya,' ujar Mas Joko. Karyanya telah dipamerkan di berbagai galeri seni Internasional.",
+    reviews: [
+      { name: "Lina Marlina", rating: 5, comment: "Detailnya luar biasa! Jadi centerpiece ruang tamu saya.", date: "2025-12-05" },
+      { name: "Michael Tan", rating: 5, comment: "Worth the price. Karya seni sejati dari Jepara.", date: "2025-11-10" }
+    ]
+  },
+  {
+    id: 7,
+    name: "Tenun Ikat Flores",
+    price: 699999,
+    originalPrice: 899999,
+    category: "fashion",
+    rating: 4.7,
+    reviewCount: 15,
+    image: "https://mloymite.wordpress.com/wp-content/uploads/2014/07/ragam_hias_tenun_ntt.jpg",
+    badge: "Eksklusif",
+    location: "Ende, Flores, NTT",
+    seller: "Mama Maria Tenun",
+    sellerImage: "https://i.pravatar.cc/100?img=16",
+    description: "Kain tenun ikat tradisional dari Flores dengan pewarna alami dari tumbuhan lokal. Motif tradisional yang sarat makna filosofis. Proses pembuatan memakan waktu 2-3 bulan per lembar.",
+    story: "Mama Maria adalah penenun dari desa Wolotopo, Ende. Baginya, menenun bukan sekadar membuat kain, tapi menyampaikan pesan dari nenek moyang. Setiap motif punya arti: ada yang melambangkan kesuburan, persatuan, dan rasa syukur kepada alam. 'Saat menenun, saya berdoa. Kain ini membawa berkat bagi yang memakainya,' kata Mama Maria.",
+    reviews: [
+      { name: "Novi Anggraini", rating: 5, comment: "Kain tenunnya indah sekali. Warna alaminya sangat unik.", date: "2025-12-08" },
+      { name: "Oscar Putra", rating: 4, comment: "Kualitas premium, motifnya sangat bermakna.", date: "2025-11-18" }
+    ]
+  },

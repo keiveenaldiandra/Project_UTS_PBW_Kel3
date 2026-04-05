@@ -1,1 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tentang Nusantara Market — platform marketplace untuk mendukung UMKM lokal Indonesia.">
+  <title>Tentang Kami — Nusantara Market</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <div class="page-loader" id="pageLoader"><div class="loader-spinner"></div></div>
 
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">🏪</span>
+        <span class="logo-text">Nusantara<span>Market</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Beranda</a>
+        <a href="products.html">Produk</a>
+        <a href="stories.html">Cerita UMKM</a>
+        <a href="about.html" class="active">Tentang</a>
+      </div>
+      <div class="nav-actions">
+        <button class="nav-wishlist-btn" id="navWishlistBtn" onclick="window.location.href='products.html?wishlist=true'" title="Wishlist">
+          <i class="fas fa-heart"></i>
+          <span class="wishlist-count" id="wishlistCount">0</span>
+        </button>
+        <div class="nav-hamburger" onclick="toggleMobileMenu()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu-overlay" id="mobileMenu">
+    <button class="mobile-close-btn" onclick="toggleMobileMenu()"><i class="fas fa-times"></i></button>
+    <a href="index.html">Beranda</a>
+    <a href="products.html">Produk</a>
+    <a href="stories.html">Cerita UMKM</a>
+    <a href="about.html" class="active">Tentang</a>
+  </div>

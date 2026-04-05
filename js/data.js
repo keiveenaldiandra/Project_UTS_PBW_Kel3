@@ -225,3 +225,24 @@ const products = [
       { name: "Wawan Setiawan", rating: 5, comment: "Beli untuk oleh-oleh, penerimanya sangat senang.", date: "2025-11-12" }
     ]
   },
+  {
+    id: 12,
+    name: "Teh Herbal Jawa",
+    price: 42000,
+    originalPrice: 50000,
+    category: "makanan",
+    rating: 4.5,
+    reviewCount: 33,
+    image: "https://static.uc.ac.id/fikom/2022/03/pic-1-scaled.jpg",
+    badge: "Sehat",
+    location: "Tawangmangu, Jawa Tengah",
+    seller: "Bu Herbal Jawi",
+    sellerImage: "https://i.pravatar.cc/100?img=38",
+    description: "Teh herbal premium campuran jahe merah, temulawak, sereh, dan kayu manis. Tanpa kafein, cocok diminum hangat maupun dingin. Khasiat: meningkatkan imunitas dan melancarkan pencernaan. Isi 20 sachet.",
+    story: "Bu Yanti, sang pemilik usaha Herbal Jawi, adalah seorang herbalis yang belajar dari kitab-kitab jamu kuno peninggalan keluarganya. Ia meracik teh herbal dengan formula yang telah teruji selama generasi. 'Alam sudah menyediakan obat untuk segala penyakit. Tugas kita hanya meramunya dengan benar,' kata Bu Yanti.",
+    reviews: [
+      { name: "Xenia Putri", rating: 5, comment: "Segar dan menyehatkan. Jadi rutinitas pagi saya.", date: "2025-12-09" },
+      { name: "Yoga Firmansyah", rating: 4, comment: "Rasanya enak, tidak pahit. Recommended!", date: "2025-11-20" }
+    ]
+  }
+];

@@ -343,6 +343,7 @@ Sekarang, dengan bantuan marketplace online, madu Pak Hamzah bisa menjangkau kon
     readTime: "7 menit"
   }
 ];
+
 // Helper: format currency
 function formatRupiah(number) {
   return new Intl.NumberFormat('id-ID', {
@@ -363,4 +364,22 @@ function generateStars(rating) {
   const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
   for (let i = 0; i < emptyStars; i++) stars += '<i class="far fa-star"></i>';
   return stars;
+}
+
+// Helper: time ago
+function timeAgo(dateStr) {
+  const now = new Date();
+  const date = new Date(dateStr);
+  const diff = Math.floor((now - date) / (1000 * 60 * 60 * 24));
+  if (diff === 0) return 'Hari ini';
+  if (diff === 1) return 'Kemarin';
+  if (diff < 7) return diff + ' hari lalu';
+  if (diff < 30) return Math.floor(diff / 7) + ' minggu lalu';
+  if (diff < 365) return Math.floor(diff / 30) + ' bulan lalu';
+  return Math.floor(diff / 365) + ' tahun lalu';
+}
+
+function getProductImage(productId) {
+  const product = products.find(p => p.id === productId);
+  return product ? product.image : 'images/no-image.jpg';
 }

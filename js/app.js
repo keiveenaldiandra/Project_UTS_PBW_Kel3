@@ -523,3 +523,360 @@ function renderRelatedProducts(product) {
   container.innerHTML = related.map(createProductCard).join('');
   setTimeout(() => initScrollAnimations(), 50);
 }
+
+// ============================================
+// STORIES PAGE
+// ============================================
+
+function renderStoriesGrid() {
+  const container = document.getElementById('storiesGrid');
+  if (!container) return;
+
+  container.innerHTML = umkmStories.map(story => `
+    <div class="story-card fade-in" onclick="openStoryModal(${story.id})">
+      <div class="story-card-image">
+        <img src="${story.image}" alt="${story.title}" loading="lazy"
+             onerror="this.onerror=null; this.src='${FALLBACK_STORY_IMG}'">
+      </div>
+      <div class="story-card-content">
+        <div class="story-card-meta">
+          <span class="tag">${story.category}</span>
+          <span class="read-time"><i class="far fa-clock"></i> ${story.readTime}</span>
+        </div>
+        <h3>${story.title}</h3>
+        <p>${story.excerpt}</p>
+        <span class="read-more">Baca selengkapnya <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </div>
+  `).join('');
+
+  setTimeout(() => initScrollAnimations(), 50);
+}
+
+function openStoryModal(storyId) {
+  const story = umkmStories.find(s => s.id === storyId);
+  if (!story) return;
+
+  const modalImg = document.getElementById('storyModalImage');
+  modalImg.src = story.image;
+  modalImg.alt = story.title;
+  modalImg.onerror = function() {
+    this.onerror = null;
+    this.src = FALLBACK_STORY_IMG;
+  };
+
+  document.getElementById('storyModalCategory').textContent = story.category;
+  document.getElementById('storyModalTitle').textContent = story.title;
+  document.getElementById('storyModalAuthor').textContent = story.author;
+  document.getElementById('storyModalDate').textContent = new Date(story.date).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
+  document.getElementById('storyModalReadTime').textContent = story.readTime;
+  document.getElementById('storyModalContent').textContent = story.content;
+
+  const modal = document.getElementById('storyModal');
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeStoryModal() {
+  const modal = document.getElementById('storyModal');
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Close modal on overlay click
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('story-modal-overlay')) {
+    closeStoryModal();
+  }
+  if (e.target.classList.contains('modal-overlay')) {
+    closeCheckoutModal();
+  }
+});
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeStoryModal();
+    closeCheckoutModal();
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu && mobileMenu.classList.contains('active')) {
+      toggleMobileMenu();
+    }
+  }
+});
+
+/* ---- Checkout Logic ---- */
+let currentCheckoutProduct = null;
+let currentCheckoutQty = 1;
+let currentCheckoutTotal = 0;
+
+function openCheckoutModal(productId) {
+  const product = products.find(p => p.id === productId);
+  if (!product) return;
+  
+  currentCheckoutProduct = product;
+  currentCheckoutQty = 1;
+  
+  // Populate form info
+  const nameEl = document.getElementById('checkoutProductName');
+  if (nameEl) nameEl.textContent = product.name;
+  
+  const priceEl = document.getElementById('checkoutProductPrice');
+  if (priceEl) priceEl.textContent = formatRupiah(product.price);
+  
+  const imgEl = document.getElementById('checkoutProductImage');
+  if (imgEl) imgEl.src = product.image;
+  
+  const qtyEl = document.getElementById('checkoutQty');
+  if (qtyEl) qtyEl.value = 1;
+  
+  // Reset methods default
+  const shippingRadios = document.getElementsByName('shippingMethod');
+  if (shippingRadios.length > 0) shippingRadios[0].checked = true;
+  
+  calculateCheckoutTotal();
+  
+  // Reset Steps
+  const step1 = document.getElementById('checkoutStep1');
+  const step2 = document.getElementById('checkoutStep2');
+  const step3 = document.getElementById('checkoutStep3');
+  
+  if (step1) step1.style.display = 'block';
+  if (step2) step2.style.display = 'none';
+  if (step3) step3.style.display = 'none';
+  
+  // Show Modal
+  const modal = document.getElementById('checkoutModal');
+  if (modal) modal.classList.add('active');
+}
+
+function updateCheckoutQty(change) {
+  const input = document.getElementById('checkoutQty');
+  if (!input) return;
+  
+  let newVal = parseInt(input.value) + change;
+  if (newVal < 1) newVal = 1;
+  if (newVal > 99) newVal = 99;
+  
+  input.value = newVal;
+  calculateCheckoutTotal();
+}
+
+function calculateCheckoutTotal() {
+  if (!currentCheckoutProduct) return;
+  
+  const qtyInput = document.getElementById('checkoutQty');
+  currentCheckoutQty = qtyInput ? parseInt(qtyInput.value) : 1;
+  
+  let method = 'diantar';
+  const shippingRadios = document.getElementsByName('shippingMethod');
+  for (let radio of shippingRadios) {
+    if (radio.checked) {
+      method = radio.value;
+      break;
+    }
+  }
+  
+  const subtotal = currentCheckoutProduct.price * currentCheckoutQty;
+  let shippingFee = 0;
+  
+  if (method === 'diantar') {
+    shippingFee = subtotal * 0.10; // 10% fee
+    const shippingRow = document.getElementById('shippingFeeRow');
+    if (shippingRow) shippingRow.style.display = 'flex';
+  } else {
+    shippingFee = 0;
+    const shippingRow = document.getElementById('shippingFeeRow');
+    if (shippingRow) shippingRow.style.display = 'none';
+  }
+  
+  currentCheckoutTotal = subtotal + shippingFee;
+  
+  const subtotalEl = document.getElementById('checkoutSubtotal');
+  if (subtotalEl) subtotalEl.textContent = formatRupiah(subtotal);
+  
+  const shippingFeeEl = document.getElementById('checkoutShippingFee');
+  if (shippingFeeEl) shippingFeeEl.textContent = formatRupiah(shippingFee);
+  
+  const totalEl = document.getElementById('checkoutTotalPrice');
+  if (totalEl) totalEl.textContent = formatRupiah(currentCheckoutTotal);
+  
+  const qrisTotalEl = document.getElementById('qrisTotalPrice');
+  if (qrisTotalEl) qrisTotalEl.textContent = formatRupiah(currentCheckoutTotal);
+}
+
+function closeCheckoutModal() {
+  const modal = document.getElementById('checkoutModal');
+  if (modal) modal.classList.remove('active');
+}
+
+let latestOrderData = null;
+
+function processToPayment(e) {
+  e.preventDefault();
+  
+  const nameInput = document.getElementById('buyerName');
+  if (!nameInput || !nameInput.value) return;
+  document.getElementById('successBuyerName').textContent = nameInput.value;
+  
+  let shippingMethod = 'diantar';
+  const radios = document.getElementsByName('shippingMethod');
+  for (let r of radios) {
+    if (r.checked) shippingMethod = r.value;
+  }
+  
+  const ds = new Date();
+  const year = ds.getFullYear().toString().substr(-2);
+  const month = (ds.getMonth()+1).toString().padStart(2, '0');
+  const randomStr = Math.random().toString(36).substring(2, 7).toUpperCase();
+  const orderId = `LKN-${year}${month}-${randomStr}`;
+  
+  latestOrderData = {
+    id: orderId,
+    date: ds.toISOString(),
+    productId: currentCheckoutProduct.id,
+    productName: currentCheckoutProduct.name,
+    productImage: currentCheckoutProduct.image,
+    price: currentCheckoutProduct.price,
+    qty: currentCheckoutQty,
+    total: currentCheckoutTotal,
+    method: shippingMethod,
+    address: document.getElementById('buyerAddress').value || '',
+    buyerName: nameInput.value,
+    status: 'Diproses'
+  };
+  
+  document.querySelector('.order-id').textContent = orderId;
+  
+  // Go to step 2 (QRIS)
+  document.getElementById('checkoutStep1').style.display = 'none';
+  document.getElementById('checkoutStep2').style.display = 'block';
+}
+
+function processPayment() {
+  showToast('Memproses pembayaran...');
+  
+  let orders = [];
+  try {
+    const saved = JSON.parse(localStorage.getItem('lokaln_orders'));
+    if (Array.isArray(saved)) orders = saved;
+  } catch (e) { }
+  
+  orders.unshift(latestOrderData);
+  localStorage.setItem('lokaln_orders', JSON.stringify(orders));
+  
+  // Simulate API wait
+  setTimeout(() => {
+    document.getElementById('checkoutStep2').style.display = 'none';
+    document.getElementById('checkoutStep3').style.display = 'block';
+  }, 1000);
+}
+
+/* ---- History Page Logic ---- */
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.getElementById('historyContainer')) {
+    renderOrderHistory();
+  }
+});
+
+function renderOrderHistory() {
+  const container = document.getElementById('historyContainer');
+  if (!container) return;
+  
+  let orders = [];
+  try {
+    const saved = JSON.parse(localStorage.getItem('lokaln_orders'));
+    if (Array.isArray(saved)) orders = saved;
+  } catch (e) {
+    console.warn("Resetting corrupt orders memory");
+  }
+  
+  if (orders.length === 0) {
+    container.innerHTML = `
+      <div class="empty-history" style="animation: float 3s ease-in-out infinite;">
+        <i class="fas fa-shopping-bag"></i>
+        <h2>Belum ada riwayat pembelian</h2>
+        <p>Anda belum pernah melakukan pesanan. Mari dukung UMKM sekarang!</p>
+        <a href="products.html" class="btn btn-primary" style="margin-top: 20px;">Belanja Sekarang</a>
+      </div>
+    `;
+    return;
+  }
+  
+  container.innerHTML = orders.filter(Boolean).map(order => {
+    let shippingInfo = '';
+    const method = order.method || 'diantar';
+    const status = order.status || 'Diproses';
+    const address = order.address || '';
+    const orderId = order.id || '-';
+    
+    if (method === 'diantar') {
+      shippingInfo = `
+        <div class="history-shipping" style="background: rgba(49, 130, 206, 0.08); border: 1px solid rgba(49, 130, 206, 0.2);">
+          <i class="fas fa-truck" style="color: #3182ce; font-size: 1.5rem;"></i>
+          <div>
+            <strong>Dikirim ke alamat:</strong><br>
+            <span style="color: var(--color-text-light); font-size: 0.9rem;">${address}</span><br>
+            <div style="background: #ebf8ff; color: #2b6cb0; padding: 6px 12px; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-weight: 600; font-size: 0.85rem;">
+              <i class="fas fa-clock"></i> Estimasi Pengiriman: 2-3 Hari Kerja
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      // Find the location of the product
+      const product = products.find(p => p.id === order.productId);
+      const location = product ? product.location : 'Lokasi Toko/UMKM';
+      shippingInfo = `
+        <div class="history-shipping" style="background: rgba(40, 167, 69, 0.08); border: 1px solid rgba(40, 167, 69, 0.2);">
+          <i class="fas fa-store" style="color: #28a745; font-size: 1.5rem;"></i>
+          <div>
+            <strong>Ambil di Tempat (Pickup):</strong><br>
+            <div style="background: white; border: 2px dashed #28a745; padding: 12px 16px; border-radius: 8px; margin: 10px 0; display: inline-block; text-align: center;">
+              <div style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 4px;">KODE KHUSUS LOKALN</div>
+              <span style="font-size: 1.35rem; font-weight: 800; color: #28a745; font-family: monospace; letter-spacing: 1px;">${orderId}</span>
+            </div><br>
+            <em style="color: var(--color-text-muted); font-size: 0.85rem;"><i class="fas fa-info-circle"></i> Bawa kode ini ke toko untuk mengambil pesanan Anda.</em><br>
+            <br><strong>📍 Lokasi Pengambilan:</strong> ${location}
+          </div>
+        </div>
+      `;
+    }
+    
+    let orderDate;
+    try {
+      orderDate = new Date(order.date || new Date()).toLocaleDateString('id-ID', {
+        year: 'numeric', month: 'long', day: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      });
+    } catch(e) {
+      orderDate = 'Tanggal tidak tersedia';
+    }
+    
+    return `
+      <div class="history-card">
+        <div class="history-header">
+          <div>
+            <span class="history-id"><i class="fas fa-receipt"></i> ${orderId}</span>
+            <span class="history-date" style="margin-left: 12px;"><i class="far fa-calendar-alt"></i> ${orderDate}</span>
+          </div>
+          <span class="history-status status-${status.toLowerCase()}">${status}</span>
+        </div>
+        <div class="history-body">
+          <img src="${order.productImage || FALLBACK_IMG}" alt="${order.productName || 'Produk'}">
+          <div class="history-details flex-1">
+            <h4 class="history-title">${order.productName || 'Produk UMKM'}</h4>
+            <p class="history-info">${order.qty || 1} Produk x ${formatRupiah(order.price || 0)}</p>
+            <p class="history-total">Total Belanja: ${formatRupiah(order.total || 0)}</p>
+          </div>
+          <div class="history-actions" style="margin-left: 10px;">
+            <button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem;" onclick="window.location.href='product-detail.html?id=${order.productId || ''}'">Beli Lagi</button>
+          </div>
+        </div>
+        ${shippingInfo}
+      </div>
+    `;
+  }).join('');
+  
+  setTimeout(() => initScrollAnimations(), 50);
+}
